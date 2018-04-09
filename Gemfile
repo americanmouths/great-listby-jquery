@@ -32,6 +32,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'active_model_serializers'
 gem 'cancancan', '~> 2.0'
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
