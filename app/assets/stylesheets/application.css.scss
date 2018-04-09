@@ -21,17 +21,12 @@
 .navbar-inverse {
   background: #2e7759;
   border: green;
-  line-height: 120px;
-  height: 100px;
-  xwpadding-top: 20px;
 
   .navbar-nav {
     >li {
        >a {
           color: white;
-          line-height: 120px;
           height: 100px;
-          xwpadding-top: 20px;
        }
     }
   }
@@ -40,9 +35,6 @@
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
     color: #fff;
     background-color: #A9A9A9;
-    line-height: 120px;
-    height: 100px;
-    xwpadding-top: 20px;
 }
 
 .navbar-brand {
@@ -54,4 +46,21 @@
 .navbar-inverse
 .navbar-brand {
     color: white;
+}
+
+h1 {
+  font-family: 'Goudy Bookletter 1911', serif;
+  color: #52565b;
+}
+
+a.book_index{
+  text-decoration: none;
+  color: #2e7759;
+  font-size: 20px;
+  font-family: 'Open Sans', sans;
+}
+
+a.book_index:hover{
+  background-color: whitesmoke;
+  color: #36383a;
 }

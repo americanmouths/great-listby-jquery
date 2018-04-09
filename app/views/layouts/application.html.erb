@@ -31,27 +31,22 @@
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-        <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+        <% if current_user %>
+          <li><a rel="nofollow" href="/users/sign_out" data-method="delete"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+        <% end %>
       </ul>
     </div>
   </nav>
 
   <div id="main-container" class="container">
-
          <div class="row">
            <div class="col-md-2"></div>
            <div class="col-md-8"><%= yield %></div>
            <div class="col-md-2"></div>
          </div>
-
-         <div class="row">
-           <div class="col-md-2"></div>
-           <center><div class="col-md-8">Log out</div></center>
-           <div class="col-md-2"></div>
-         </div>
-
-      </div>
+    </div>
 
    </body>
  </html>
