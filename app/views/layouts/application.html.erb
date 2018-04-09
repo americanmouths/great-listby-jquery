@@ -8,45 +8,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911|Open+Sans" rel="stylesheet">
   </head>
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <center><h1 class="navbar-brand">The Great Listby</h1>
+  <body>
+    <%= render 'layouts/navbar' %>
+
+    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+    <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+    <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+
+    <div id="main-container" class="container">
+           <div class="row">
+             <div class="col-md-2"></div>
+             <div class="col-md-8"><%= yield %></div>
+             <div class="col-md-2"></div>
+           </div>
       </div>
-      <ul class="nav navbar-nav">
-        <li class="active"><%= link_to "Home", root_path %></li>
-        <li><%= link_to "All Books", books_path %></li>
-        <li><%= link_to "All Authors", authors_path %></li>
-        <li><%= link_to "All Genres", genres_path %></li>
-        <% if current_user %>
-        <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">Booklists & More
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "New Book List", new_book_list_path %></li>
-            <li><%= link_to "Your book lists", book_lists_path %></li>
-            <li><%= link_to "Your reviews", users_reviews_path(current_user) %></li>
-            <li><%= link_to "Highest Rated Books", users_highest_rated_books_path(current_user) %></li>
-            <li><%= link_to "Lowest Rated Books", users_lowest_rated_books_path(current_user) %></li>
-        </ul>
-        <% end %>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-        <% if current_user %>
-          <li><a rel="nofollow" href="/users/sign_out" data-method="delete"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
-        <% end %>
-      </ul>
-    </div>
-  </nav>
-
-  <div id="main-container" class="container">
-         <div class="row">
-           <div class="col-md-2"></div>
-           <div class="col-md-8"><%= yield %></div>
-           <div class="col-md-2"></div>
-         </div>
-    </div>
-
    </body>
  </html>
