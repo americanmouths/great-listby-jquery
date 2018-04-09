@@ -4,11 +4,5 @@
   <%= submit_tag 'Search By Title', name: nil, class: "btn btn-default" %>
 <% end %>
 </center>
-<ul>
-  <% @books.each do |book| %>
-    <span class="glyphicon glyphicon-chevron-right"></span> <%= link_to book.title, book_path(book.id), class: "book_index" %><br>
-<% end %>
-</ul>
-
 <div id="books_index">
 </div>
