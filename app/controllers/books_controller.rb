@@ -3,6 +3,12 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.alphabatize
+
+    respond_to do |format|
+      format.html {render :index}
+      format.json {render json: @books}
+    end
+
     if params[:term].present?
       @searched_book = Book.search(params[:term])
       if !@searched_book.nil?
@@ -12,6 +18,7 @@ class BooksController < ApplicationController
         render 'books/index'
       end
     end
+
   end
 
   def new
