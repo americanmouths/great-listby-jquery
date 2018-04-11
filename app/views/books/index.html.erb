@@ -1,11 +1,8 @@
 <center><h1><u>The Great Listby Books</u></h1>
 <%= form_tag(books_path, method: :get) do %>
   <%= text_field_tag :term, params[:term] %>
-  <%= submit_tag 'Search By Title', name: nil, class: "btn btn-default" %>
+  <%= submit_tag 'Search By Title', name: nil, class: "btn btn-default btn-sm" %>
 <% end %>
 </center>
 <div id="books_index">
-</div>
-
-<div id="book_info">
 </div>
