@@ -14,7 +14,7 @@ function Book(data){
 //Book Index Prototype
 Book.prototype.indexTemplate = function(){
   let bookHTML = `<div><a href="#" data-id="${this.id}" class="see_book_info" id="books-${this.id}"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    <a href="books/${this.id}" class="book_index">${ this.title }</a></div>
+    <a href="books/${this.id}" class="book-index">${ this.title }</a></div>
   <br><div id="book-info-${this.id}" class="book-info-on-index"></div><br>`
   return bookHTML
 }
