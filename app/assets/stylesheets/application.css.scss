@@ -53,7 +53,8 @@ h2 {
   color: #52565b;
 }
 
-a.book_index{
+a.book-index,
+a.author-index{
   text-decoration: none;
   color: #2e7759;
   font-size: 20px;
@@ -71,7 +72,8 @@ p {
   font-size: 16px;
 }
 
-.book-info-on-index {
+.book-info-on-index,
+.author-info-on-index {
   font-family: 'Open Sans', sans;
   font-size: 14px;
   color: #52565b;
