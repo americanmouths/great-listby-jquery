@@ -23,7 +23,7 @@ Genre.prototype.indexTemplate = function(){
 Genre.prototype.showBookTemplate = function(){
   let id = this.id
   let bookIntroHTML = `Books:<br>`
-  $("#book-info-" + id).append(bookIntroHTML)
+  $("#genre-book-info-" + id).append(bookIntroHTML)
   this.books.forEach(function(book){
     let bookId = book.id
     let bookHTML = `<ul><li><a href="/books/${bookId}">${book.title}</li></ul>`
