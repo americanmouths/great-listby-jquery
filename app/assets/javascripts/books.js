@@ -1,19 +1,20 @@
 $(document).ready(function(){
   bookIndex();
+  displayBooks();
 })
 
 //Book Constructor
 function Book(data){
   this.id = data.id
   this.title = data.title
-  this.genre = data.genre
-  this.author = data.author
+  this.genre = data.genre.name
+  this.author = data.author.name
 }
 
 //Book Index Prototype
 Book.prototype.indexTemplate = function(){
-  let bookHTML = `<a href="#" data-id="${this.id}" class="see_book_info" id="books-${this.id}"><span class="glyphicon glyphicon-chevron-right"></span></a><a href="books/${this.id}" class="book_index">${ this.title }</a>
-  <div id="books-${this.id}"></div><br>`
+  let bookHTML = `<div><a href="#" data-id="${this.id}" class="see_book_info" id="books-${this.id}"><span class="glyphicon glyphicon-chevron-right"></span></a>  <a href="books/${this.id}" class="book_index">${ this.title }</a></div>
+  <div id="book-info-${this.id}"></div><br>`
   return bookHTML
 }
 
@@ -47,13 +48,21 @@ function appendBookIndex(data){
 Book.prototype.showTemplate = function() {
   let bookHTML = `Written By: <u>${ this.author }</u><br>
   Genre: <u>${ this.genre}</u>`
-  return authorHTML
+  return bookHTML
 }
 
+//Display books when > is clicked
 function displayBooks(){
   $(document).on('click', '.see_book_info', function(e){
     e.preventDefault();
     let id = $(this).attr('data-id')
     $.getJSON(`/books/${id}.json`, appendBooks)
   })
+}
+
+function appendBooks(bookData){
+  let id = bookData.id
+  let newBook = new Book(bookData)
+  let newBookHTML = newBook.showTemplate()
+  $('#book-info-' + id).append(newBookHTML)
 }
