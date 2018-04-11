@@ -1,0 +1,18 @@
+<%= form_for book do |f| %>
+
+  <%= f.label :title %><br>
+  <%= f.text_field :title %><br><br>
+
+  <%= f.label "Genre" %><br>
+  <%= f.text_field :genre_name %><br><br>
+
+  <%= f.label "Author" %><br>
+  <%= f.text_field :author_name %><br><br>
+
+  <%= f.label "Status" %><br>
+  <%= f.select :book_features, [["Currently reading"], ["Already read"], ["Want to read"]]%><br><br>
+
+  <%= f.hidden_field :book_list_id, :value => booklist.id %>
+  <%= f.submit "Add this book to your booklist"%>
+
+<% end %>

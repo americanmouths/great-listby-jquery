@@ -1,0 +1,10 @@
+<%= form_for book do |f| %>
+  <strong>
+  <%= f.label "Change the status:" %>
+  </strong><br>
+  <%= f.select :book_features, [["Currently reading"], ["Already read"], ["Want to read"]]%>
+  <br>
+  <br>
+  <%= f.hidden_field :book_list_id, :value => booklist.id %>
+  <%= f.submit %>
+<% end %>
