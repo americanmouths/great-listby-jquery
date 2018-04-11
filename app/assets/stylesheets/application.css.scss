@@ -28,14 +28,13 @@
           color: white;
           height: 100px;
        }
+       >a:hover {
+         background-color: #A9A9A9;
+       }
     }
   }
 }
 
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
-    color: #fff;
-    background-color: #A9A9A9;
-}
 
 .navbar-brand {
   font-size: 4.0em;
@@ -70,4 +69,10 @@ p {
   text-align: justify;
   font-family: 'Open Sans', sans;
   font-size: 16px;
+}
+
+.book-info-on-index {
+  font-family: 'Open Sans', sans;
+  font-size: 14px;
+  color: #52565b;
 }
