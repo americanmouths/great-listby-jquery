@@ -1,7 +1,7 @@
 $(document).ready(function(){
   bookIndex();
   displayBooks();
-})
+});
 
 //Book Constructor
 function Book(data){
@@ -13,8 +13,9 @@ function Book(data){
 
 //Book Index Prototype
 Book.prototype.indexTemplate = function(){
-  let bookHTML = `<div><a href="#" data-id="${this.id}" class="see_book_info" id="books-${this.id}"><span class="glyphicon glyphicon-chevron-right"></span></a>  <a href="books/${this.id}" class="book_index">${ this.title }</a></div>
-  <div id="book-info-${this.id}"></div><br>`
+  let bookHTML = `<div><a href="#" data-id="${this.id}" class="see_book_info" id="books-${this.id}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a href="books/${this.id}" class="book_index">${ this.title }</a></div>
+  <br><div id="book-info-${this.id}" class="book-info-on-index"></div><br>`
   return bookHTML
 }
 
@@ -46,8 +47,8 @@ function appendBookIndex(data){
 
 //Show Template
 Book.prototype.showTemplate = function() {
-  let bookHTML = `Written By: <u>${ this.author }</u><br>
-  Genre: <u>${ this.genre}</u>`
+  let bookHTML = `<strong>Written By:</strong> <a href="/authors/${this.id}">${ this.author }</a><br>
+  <strong>Genre:</strong> <a href="/genres/${this.id}">${ this.genre}</a>`
   return bookHTML
 }
 
