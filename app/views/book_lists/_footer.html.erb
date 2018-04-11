@@ -1,0 +1,5 @@
+<strong>
+  <%= link_to "Add A Review", new_book_review_path(book.id) %><br>
+  <%= link_to "Update Status", edit_book_list_book_path(booklist.id, book.id) %><br>
+  <%= link_to "Delete from booklist", book_list_book_path(booklist.id, book.id), :method => "delete" %>
+</strong>

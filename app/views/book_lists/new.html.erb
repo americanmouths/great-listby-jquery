@@ -1,0 +1,4 @@
+<%= render partial: 'layouts/errors', locals: {object: @booklist} %>
+
+<h2>Create A New Book List</h2>
+<%= render partial: 'form', locals: {booklist: @booklist, user: @user} %>
