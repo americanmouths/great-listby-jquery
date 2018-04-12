@@ -1,6 +1,6 @@
 <%= form_for book do |f| %>
   <%= f.collection_check_boxes :book_list_ids, user.book_lists, :id, :title, :checked => false, :include_hidden => false do |b| %>
-    <%= b.check_box %><%= b.label %><br>
+    <%= b.check_box %>  <%= b.label %><br>
   <% end %>
   <br>
 

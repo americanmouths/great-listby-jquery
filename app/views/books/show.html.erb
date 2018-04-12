@@ -1,35 +1,42 @@
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-sm-7">
       <h1><u><%= @book.title %></u></h1>
         <div class="book-index">
           Written By: <%= link_to @book.author.name, author_path(@book.author) %><br>
           Genre: <%= link_to @book.genre.name, genre_path(@book.genre) %><br>
+          <hr>
         </div>
       <% if current_user && @book_on_booklist.present? %>
-        <h3>This book appears on these book lists:</h3>
+        <p>This book appears on these booklists:</p>
           <% @book_on_booklist.each do |book_list| %>
             <%= link_to book_list.title, book_list_path(book_list) %><br>
           <% end %>
+          <hr>
       <% end %>
 
       <% if current_user && current_user.book_lists.present? %>
-        <h3>Add it to one of your book lists:</h3>
+        <p>Add it to one of your booklists:</p>
           <%= render partial: "booklistcollection", locals: {book: @book, user: @user} %>
         <% end %>
         <br>
     </div>
 
-  <div class="col-md-2">
+  <div class="col-sm-5">
     <h1>Reviews</h1>
-    <% if @reviews.present? %>
-      <% @reviews.each do |review| %>
-        <h3><u>Title:</u> <%= review.title %></h3>
-        <p><u>Summary:</u> <%= review.content %></p>
-        <p><u>Rating:</u> <%= review.rating %></p>
-        <p><u>Written By:</u> <%= review.user.email %></p>
-        <hr>
-      <% end %>
-    <% end %>
     <%= link_to "Add A Review", new_book_review_path(@book.id) %>
+    <% if @reviews.present? %>
+        <ol>
+          <% @reviews.each do |review| %>
+            <div class="review-content-book-show">
+              <li><br>
+              <h4><strong>Written By:</strong> <%= review.user.email %></h4>
+              <h4>Title: <%= review.title %></h4>
+              <h4>Rating: <%= review.rating %></h4>
+              <p>Summary: <%= review.content %></p>
+            </li>
+            <% end %>
+          <% end %>
+        </ol>
+      </div>
   </div>
 </div>
