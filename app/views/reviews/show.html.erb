@@ -1,0 +1,10 @@
+<h2>Review for <%= link_to @book.title, book_path(@book) %></h2>
+<h3>Title: <%= @review.title %></h3>
+<h3>Stars: <%= @review.rating.to_s %></h3>
+<h3>Content:</h3> <p><%= @review.content %></p>
+<h3>Written by: <%= @review.user.email %></h3><br><br>
+
+<% if can? :update, @review %>
+  <%= link_to "Edit this review", edit_book_review_path(@book.id, @review.id) %> <br>
+  <%= link_to "Delete this review", book_review_path(@book.id, @review.id), :method => "delete"  %>
+<% end %>
