@@ -1,35 +1,35 @@
-<center>
-  <h1><%= @book.title %></h1>
-  Author: <%= link_to @book.author.name, author_path(@book.author) %> ||
-  Genre: <%= link_to @book.genre.name, genre_path(@book.genre) %> ||
-  <%= link_to "Reviews", book_reviews_path(@book) %>
-  <hr>
-</center>
+<div class="row">
+    <div class="col-md-8">
+      <h1><u><%= @book.title %></u></h1>
+        <div class="book-index">
+          Written By: <%= link_to @book.author.name, author_path(@book.author) %><br>
+          Genre: <%= link_to @book.genre.name, genre_path(@book.genre) %><br>
+        </div>
+      <% if current_user && @book_on_booklist.present? %>
+        <h3>This book appears on these book lists:</h3>
+          <% @book_on_booklist.each do |book_list| %>
+            <%= link_to book_list.title, book_list_path(book_list) %><br>
+          <% end %>
+      <% end %>
 
-<% if @reviews.present? %>
-  <h2>Reviews:</h2>
-  <% @reviews.each do |review| %>
-    <h3><u>Title:</u> <%= review.title %></h3>
-    <p><u>Summary:</u> <%= review.content %></p>
-    <p><u>Rating:</u> <%= review.rating %></p>
-    <p><u>Written By:</u> <%= review.user.email %></p>
-    -------------------------------------------
-  <% end %>
-<% end %>
+      <% if current_user && current_user.book_lists.present? %>
+        <h3>Add it to one of your book lists:</h3>
+          <%= render partial: "booklistcollection", locals: {book: @book, user: @user} %>
+        <% end %>
+        <br>
+    </div>
 
-<% if current_user && @book_on_booklist.present? %>
-  <h3>This book appears on these book lists:</h3>
-    <% @book_on_booklist.each do |book_list| %>
-      <%= link_to book_list.title, book_list_path(book_list) %><br>
+  <div class="col-md-2">
+    <h1>Reviews</h1>
+    <% if @reviews.present? %>
+      <% @reviews.each do |review| %>
+        <h3><u>Title:</u> <%= review.title %></h3>
+        <p><u>Summary:</u> <%= review.content %></p>
+        <p><u>Rating:</u> <%= review.rating %></p>
+        <p><u>Written By:</u> <%= review.user.email %></p>
+        <hr>
+      <% end %>
     <% end %>
-<% end %>
-
-<% if current_user && current_user.book_lists.present? %>
-<h3>Add it to one of your book lists:</h3>
-  <%= render partial: "booklistcollection", locals: {book: @book, user: @user} %>
-<% end %>
-<br>
-
-<center>
-  <%= link_to "Add A Review", new_book_review_path(@book.id) %>
-</center>
+    <%= link_to "Add A Review", new_book_review_path(@book.id) %>
+  </div>
+</div>
