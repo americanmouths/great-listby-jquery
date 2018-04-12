@@ -7,9 +7,4 @@
 </div>
 
 <div id="reviewErrors">
-  <%= render partial: 'layouts/errors', locals: {object: @review} %>
-  <% if can? :update, @review %>
-    <%= link_to "Edit this review", edit_book_review_path(@book.id, @review.id) %> <br>
-    <%= link_to "Delete this review", book_review_path(@book.id, @review.id), :method => "delete"  %>
-  <% end %>
 </div>
