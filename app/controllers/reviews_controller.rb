@@ -18,6 +18,10 @@ class ReviewsController < ApplicationController
 
   def show
     find_review_by_book
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @review}
+    end
   end
 
   def edit
