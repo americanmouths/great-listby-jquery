@@ -4,6 +4,8 @@ function Review(data){
   this.title = data.title
   this.content = data.content
   this.rating = data.rating
+  this.book_id = data.book.id
+  this.book_title = data.book.title
 }
 
 //Review Show Prototype
@@ -11,8 +13,8 @@ Review.prototype.showReview = function(){
   reviewHTML = `<h2>${this.title}</h2>
   <p>Content: ${this.content}</p>
   <p>Rating: ${this.rating}</p>
-  <hr>`
-
+  <hr>
+  <a href="/books/${this.book_id}">Return to ${this.book_title}</a>`
   return reviewHTML
 }
 
