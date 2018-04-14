@@ -22,7 +22,7 @@ Author.prototype.indexTemplate = function() {
   return authorHTML
 }
 
-//Author Show Prototype
+//Author Books on Index Prototype
 Author.prototype.showBookTemplate = function(){
   let id = this.id
   let bookIntroHTML = `Books:<br>`
@@ -34,6 +34,17 @@ Author.prototype.showBookTemplate = function(){
   })
 }
 
+//Author Show Template for Author Show page
+Author.prototype.showTemplate = function() {
+  let authorHTML = `<u>${ this.name }</u>`
+  $("#authorName").append(authorHTML)
+  this.books.forEach(function(book){
+    let id = this.id
+    let bookId = book.id
+    let bookHTML = `<p><a href="/books/${bookId}">${book.title}</a></p>`
+    $("#authors_books").append(bookHTML)
+  })
+}
 
 //////////////Author Index via AJAX//////////////
 
@@ -105,20 +116,6 @@ function appendAuthorsShow(data){
   let newAuthor = new Author(data)
   newAuthor.showTemplate();
 }
-
-//Author show prototype
-Author.prototype.showTemplate = function() {
-  let authorHTML = `<u>${ this.name }</u>`
-  $("#authorName").append(authorHTML)
-
-  this.books.forEach(function(book){
-    let id = this.id
-    let bookId = book.id
-    let bookHTML = `<p><a href="/books/${bookId}">${book.title}</a></p>`
-    $("#authors_books").append(bookHTML)
-  })
-}
-
 
 //Next Author Via AJAX
 function nextAuthor(){
