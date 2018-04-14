@@ -1,6 +1,7 @@
 <ul>
   <% books.each do |book| %>
-    <li><%= link_to book.title, book_path(book.id) %></li>
-    Rating: <%= book.reviews.find_by(book_id: book.id, user_id: current_user.id).rating %><br><br>
-<% end %>
+    <h3><u><%= link_to book.title, book_path(book.id) %></u></h3>
+    <p>Your Rating: <%= book.reviews.find_by(book_id: book.id, user_id: current_user.id).rating %></p>
+    <p>You Said: <%= book.reviews.find_by(book_id: book.id, user_id: current_user.id).content %></p>
+  <% end %>
 </ul>

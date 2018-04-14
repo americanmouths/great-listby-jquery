@@ -3,12 +3,12 @@
 <%= f.label "Title: " %>
 <%= f.text_field :title %><br><br>
 
-Select a book to add to this book list:<br><br>
+Select a book to add to this booklist:<br><br>
 <%= f.collection_check_boxes :book_ids, Book.alphabatize, :id, :title, :checked => false, :include_hidden => false do |b| %>
-  <%= b.check_box %><%= b.label %><br>
+  <%= b.check_box %>  <%= b.label %><br>
 <% end %><br>
 
-Create a book to add to this book list:<br><br>
+Create a book to add to this booklist:<br><br>
 <%= f.fields_for :books, booklist.books.build do |book_fields| %>
   Title:<br><%= book_fields.text_field :title %><br><br>
   Author:<br><%= book_fields.text_field :author %><br><br>

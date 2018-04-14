@@ -1,11 +1,12 @@
 <%= render partial: 'header', locals: {booklist: @booklist} %>
 
+<h2>Books on this list:</h2>
 <% @booklist.books.each do |book| %>
-  <hr>
-    <h3> Title: <%= link_to book.title.titleize, book_path(book) %><br></h3>
-    Author: <%= link_to book.author.name, author_path(book.author) %><br>
+    <h3><u><%= link_to book.title.titleize, book_path(book) %></u><br></h3>
+    By: <%= link_to book.author.name, author_path(book.author) %><br>
     Genre: <%= link_to book.genre.name, genre_path(book.genre) %><br>
     Status: <%= book.book_features.find_by(book_list_id: @booklist.id).status %><br><br>
 
     <%= render partial: 'footer', locals: {booklist: @booklist, book: book} %>
+    <hr>
 <% end %>

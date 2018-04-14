@@ -1,8 +1,13 @@
-<center>
-  <h1>"<%= booklist.title %>"</h1>
-    <strong>
-      <%= link_to "Add a book to this booklist", new_book_list_book_path(booklist) %><br>
-      <%= link_to "Edit this booklist", edit_book_list_path(booklist) %><br>
-      <%= link_to "Delete this entire booklist", book_list_path(booklist.id), :method => "delete" %>
-    </strong>
-</center>
+<div class="row">
+    <div class="col-sm-12">
+      <center>
+      <h1><em><%= booklist.title %></em></h1>
+        <strong>
+          <%= link_to "Add a book to this booklist", new_book_list_book_path(booklist) %><br>
+          <%= link_to "Edit this booklist", edit_book_list_path(booklist) %><br>
+          <%= link_to "Delete this entire booklist", book_list_path(booklist.id), :method => "delete" %>
+          <hr>
+        </strong>
+      </center>
+    </div>
+  </div>

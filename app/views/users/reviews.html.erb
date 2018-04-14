@@ -1,16 +1,23 @@
-<center>
-  <h2>Reviews You Have Written</h2>
-</center>
-
-<% if @reviews.present? %>
-  <% @reviews.each do |review| %>
-    <h3>Title: "<%= link_to review.title, book_review_path(review.book, review.id) %>"</h3>
-    <strong>Book:</strong> <%= link_to review.book.title, book_path(review.book) %><br>
-    <strong>Stars: </strong><%= review.rating %><br>
-    <strong>Content:</strong> <%= review.content %><br><br><br>
-  <% end %>
-<% else %>
-  <center>
-    Looks like you haven't written any reviews yet.
-  </center>
-<% end %>
+<div class="row">
+    <div class="col-sm-12">
+      <center>
+        <h2>Reviews By You</h2>
+      </center>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-sm-12">
+    <% if @reviews.present? %>
+      <% @reviews.each do |review| %>
+        <h3>"<%= link_to review.title, book_review_path(review.book, review.id) %>"</h3>
+        <p><strong>Book:</strong> <%= link_to review.book.title, book_path(review.book) %></p>
+        <p><strong>Stars: </strong><%= review.rating %></p>
+        <p><strong>Content:</strong> <%= review.content %></p>
+      <% end %>
+    <% else %>
+    <center>
+      <p>Looks like you haven't written any reviews yet.</p>
+    </center>
+    <% end %>
+  </div>
+</div>

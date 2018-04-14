@@ -1,7 +1,7 @@
-<h2>Your Current Book Lists</h2>
+<h2>Your Current Booklists</h2>
 <% if @booklists.present? %>
   <% @booklists.each do |book_list| %>
-    <h3>Title: <%= link_to book_list.title, book_list_path(book_list) %></h3>
+    <h3><%= link_to book_list.title, book_list_path(book_list) %></h3>
     Books on this list:
     <ol>
       <% book_list.books.each do |book| %>
