@@ -17,7 +17,7 @@ Author.prototype.indexTemplate = function() {
   let authorHTML = `<div><a href="#" data-id="${this.id}" class="see_author_info" id="authors-${this.id}"><span class="glyphicon glyphicon-chevron-right"></span></a>
     <a href="/authors/${this.id}" data-id="${this.id}" class="author-index">${ this.name }</a></div>
   </a>
-  <br><div id="author-info-${this.id}" class="author-info-on-index"></div><br>`
+  <br><div id="author-info-${this.id}" class="author-info-on-index"></div>`
   return authorHTML
 }
 

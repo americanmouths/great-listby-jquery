@@ -1,15 +1,24 @@
-<h2>Your Current Booklists</h2>
-<% if @booklists.present? %>
-  <% @booklists.each do |book_list| %>
-    <h3><%= link_to book_list.title, book_list_path(book_list) %></h3>
-    Books on this list:
-    <ol>
-      <% book_list.books.each do |book| %>
-        <li><%= link_to book.title, book_path(book) %></li>
-        Status: <%= book.book_features.find_by(book_list_id: book_list.id).status %><br><br>
+<div class="row">
+  <div class="col-sm-12">
+    <center><h2>Your Current Booklists</h2></center>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <% if @booklists.present? %>
+      <% @booklists.each do |book_list| %>
+        <h3><u><%= link_to book_list.title, book_list_path(book_list) %></u></h3>
+        <p>Books on this list:</p>
+        <ul>
+          <% book_list.books.each do |book| %>
+            <li><p><%= link_to book.title, book_path(book) %></p></li>
+            Status: <%= book.book_features.find_by(book_list_id: book_list.id).status %><br><br>
+          <% end %>
+        </ul>
       <% end %>
-    </ol>
-  <% end %>
-<% else %>
-  <%= link_to "Get started by creating a book list", new_book_list_path %>
-<% end %>
+    <% else %>
+    <%= link_to "Get started by creating a book list", new_book_list_path %>
+    <% end %>
+  </div>
+</div>

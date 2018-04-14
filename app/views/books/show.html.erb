@@ -17,24 +17,23 @@
         <h1><u>Reviews</u></h1>
         <%= link_to "Add A Review", new_book_review_path(@book.id) %><br><br>
         <div class="review-content-book-show">
-          <% if @reviews.present? %>
-            <% @reviews.each do |review| %>
-              <p><strong>Written By:</strong> <%= review.user.email %></p>
-              <p>Title: <%= review.title %></p>
-              <p>Rating: <%= review.rating %></p>
-              <p>Summary: <%= review.content %></p>
+        <% if @reviews.present? %>
+          <% @reviews.each do |review| %>
+            <p><strong>Written By:</strong> <%= review.user.email %></p>
+            <p>Title: <%= review.title %></p>
+            <p>Rating: <%= review.rating %></p>
+            <p>Summary: <%= review.content %></p>
 
-              <% if can? :update, review %>
-                <%= link_to "Edit this review", edit_book_review_path(@book.id, review.id) %> <br>
-                <%= link_to "Delete this review", book_review_path(@book.id, review.id), :method => "delete"  %>
-              <% end %>
-
+            <% if can? :update, review %>
+              <%= link_to "Edit this review", edit_book_review_path(@book.id, review.id) %> <br>
+              <%= link_to "Delete this review", book_review_path(@book.id, review.id), :method => "delete"  %>
             <% end %>
           <% end %>
-          <hr>
-        </div>
-      </div>
+        <% end %>
+      <hr>
     </div>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-sm-6">
