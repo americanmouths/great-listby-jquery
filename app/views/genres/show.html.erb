@@ -9,16 +9,17 @@
 
 <div class="row">
   <div class="sm-col-12">
+    <div id="genreBookTitle"></div>
+    <div id="genreBookTitleHTML"><h3><u>Books in this genre:</u></h3></div>
     <div id="htmlGenreBooks">
       <ul>
         <% @genre.books.each do |book| %>
           <li><center><p><u><%= link_to book.title, book_path(book.id) %></u></p></li>
-          <p>Author: <%= link_to book.author.name, author_path(book.author) %></center>
         <% end %>
       </ul>
     </div>
     <center>
-      <div id="genre_books">
+      <div id="genreBooks">
       </div>
     </center>
   </div>

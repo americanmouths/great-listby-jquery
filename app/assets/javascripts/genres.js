@@ -1,6 +1,7 @@
 $(document).ready(function(){
   genreIndex();
   displayGenreBooks();
+  noNextGenre();
 })
 
 //Genre Constructor
@@ -8,7 +9,6 @@ function Genre(data){
   this.id = data.id
   this.name = data.name
   this.books = data.books
-  this.author = data.books.author
 }
 
 //Genre Index Prototype
@@ -33,9 +33,16 @@ Genre.prototype.showBookTemplate = function(){
 }
 
 //Genre Show Template via Next Genre Link
-
 Genre.prototype.showTemplate = function(){
-
+  let genreName = `${this.name}`
+  $("#genreName").append(genreName)
+  let genreBooks = `<h3><u>Books in this genre:</u></h3>`
+  $('#genreBookTitle').append(genreBooks)
+  this.books.forEach(function(book){
+    let bookId = book.id
+    let bookHTML = `<ul><li><center><p><u><a href="/books/${bookId}">${book.title}</u></a></p></li>`
+    $('#genreBooks').append(bookHTML)
+  })
 }
 
 //Get Req to Genres
@@ -88,7 +95,8 @@ function clearDivs(){
   document.getElementById("htmlGenreName").innerHTML = ""
   document.getElementById("genreName").innerHTML = ""
   document.getElementById("htmlGenreBooks").innerHTML = ""
-  document.getElementById("genre_books").innerHTML = ""
+  document.getElementById("genreBooks").innerHTML = ""
+  document.getElementById("genreBookTitleHTML").innerHTML = ""
 }
 
 //Show Page via AJAX
@@ -134,6 +142,7 @@ function nextAuthor(){
 function noNextGenre(){
   $('#js-next').hide();
   $('#genreShow').hide();
+  $('#genreBookTitle').hide();
   const html = "<p>Sorry there is no next genre</p>"
   $("#genreError").append(html)
 }
