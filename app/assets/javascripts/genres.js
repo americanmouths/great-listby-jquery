@@ -15,7 +15,7 @@ function Genre(data){
 
 //Genre Index Prototype
 Genre.prototype.indexTemplate = function(){
-  let genreHTML = `<div><a href="#" data-id="${this.id}" class="see_genre_info" id="genres-${this.id}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+  let genreHTML = `<div><a href="#" data-id="${this.id}" class="see_genre_info" id="genres-${this.id}"><span class="glyphicon glyphicon-chevron-right" id="${this.id}"></span></a>
     <a href="genres/${this.id}" data-id="${this.id}" class="genre-index">${ this.name }</a></div>
   <div id="genre_books-${this.id}"></div>
   <br><div id="genre-book-info-${this.id}" class="book-info-on-index"></div>`
@@ -32,6 +32,8 @@ Genre.prototype.showBookTemplate = function(){
     let bookHTML = `<ul><li><a href="/books/${bookId}">${book.title}</li></ul>`
     $("#genre-book-info-" + id).append(bookHTML)
   })
+  $('span#' + id + '.glyphicon.glyphicon-chevron-right').hide()
+  $("#genres-" + id).hide()
 }
 
 //Genre Show Template via Next Genre Link
@@ -46,8 +48,6 @@ Genre.prototype.showTemplate = function(){
     $('#genreBooks').append(bookHTML)
   })
 }
-
-
 
 //////////////Genre Index via AJAX//////////////
 //Get Req to Genres

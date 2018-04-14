@@ -15,9 +15,8 @@ function Author(data){
 
 //Author Index Prototype
 Author.prototype.indexTemplate = function() {
-  let authorHTML = `<div><a href="#" data-id="${this.id}" class="see_author_info" id="authors-${this.id}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+  let authorHTML = `<div><a href="#" data-id="${this.id}" class="see_author_info" id="authors-${this.id}"><span class="glyphicon glyphicon-chevron-right" id="${this.id}"></span></a>
     <a href="/authors/${this.id}" data-id="${this.id}" class="author-index">${ this.name }</a></div>
-  </a>
   <br><div id="author-info-${this.id}" class="author-info-on-index"></div>`
   return authorHTML
 }
@@ -32,6 +31,8 @@ Author.prototype.showBookTemplate = function(){
     let bookHTML = `<ul><li><a href="/books/${bookId}">${book.title}</li></ul>`
     $("#author-info-" + id).append(bookHTML)
   })
+  $('span#' + id + '.glyphicon.glyphicon-chevron-right').hide()
+  $("#authors-" + id).hide()
 }
 
 //Author Show Template for Author Show page
@@ -79,6 +80,10 @@ function displayAuthorBooks(){
   $(document).on('click', 'a.see_author_info', function(e){
     e.preventDefault();
     let id = $(this).attr('data-id')
+    // chevronHTML = `<span class="glyphicon glyphicon-chevron-down"></span>`
+    // $('span#' + id + '.glyphicon.glyphicon-chevron-right').hide()
+    // $("#authors-" + id).hide()
+    // $('#chevron-' + id).append(chevronHTML)
     $.getJSON(`/authors/${id}.json`, appendAuthorBooks)
   })
 }

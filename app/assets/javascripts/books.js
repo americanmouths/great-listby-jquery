@@ -13,7 +13,7 @@ function Book(data){
 
 //Book Index Prototype
 Book.prototype.indexTemplate = function(){
-  let bookHTML = `<div><a href="#" data-id="${this.id}" class="see_book_info" id="books-${this.id}"><span class="glyphicon glyphicon-chevron-right"></span></a>
+  let bookHTML = `<div><a href="#" data-id="${this.id}" class="see_book_info" id="books-${this.id}"><span class="glyphicon glyphicon-chevron-right" id="${this.id}"></span></a>
     <a href="books/${this.id}" class="book-index">${ this.title }</a></div>
     <br><div id="book-info-${this.id}" class="book-info-on-index"></div>`
   return bookHTML
@@ -47,8 +47,11 @@ function appendBookIndex(data){
 
 //Show Template
 Book.prototype.showTemplate = function() {
+  let id = this.id
   let bookHTML = `<strong>Written By:</strong> <a href="/authors/${this.id}">${ this.author }</a><br>
-  <strong>Genre:</strong> <a href="/genres/${this.id}">${ this.genre}</a>`
+  <strong>Genre:</strong> <a href="/genres/${this.id}">${ this.genre}</a><br><br>`
+  $('span#' + id + '.glyphicon.glyphicon-chevron-right').hide()
+  $("#books-" + id).hide()
   return bookHTML
 }
 
