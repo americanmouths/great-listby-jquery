@@ -92,7 +92,6 @@ function appendGenreBooks(data){
 }
 
 
-
 //////////////Genre Show via AJAX & Next Genre//////////////
 
 //clear DIVS on show page
