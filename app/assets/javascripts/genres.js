@@ -1,9 +1,11 @@
 $(document).ready(function(){
   genreIndex();
   displayGenreBooks();
-  noNextGenre();
+  nextGenre();
 })
 
+
+//////////////Genre Object Constructor & Prototypes//////////////
 //Genre Constructor
 function Genre(data){
   this.id = data.id
@@ -45,6 +47,9 @@ Genre.prototype.showTemplate = function(){
   })
 }
 
+
+
+//////////////Genre Index via AJAX//////////////
 //Get Req to Genres
 function genreIndex(){
   $.getJSON("/genres").done(function(data){
@@ -88,15 +93,16 @@ function appendGenreBooks(data){
 
 
 
-//////////////Author Show via AJAX//////////////
+//////////////Genre Show via AJAX & Next Genre//////////////
 
 //clear DIVS on show page
-function clearDivs(){
+function clearGenreDivs(){
   document.getElementById("htmlGenreName").innerHTML = ""
   document.getElementById("genreName").innerHTML = ""
   document.getElementById("htmlGenreBooks").innerHTML = ""
   document.getElementById("genreBooks").innerHTML = ""
   document.getElementById("genreBookTitleHTML").innerHTML = ""
+  document.getElementById("genreBookTitle").innerHTML = ""
 }
 
 //Show Page via AJAX
@@ -105,7 +111,7 @@ $(document).on('turbolinks:load', function() {
     e.stopPropagation()
     let id = $(this).attr('data-id')
       $.getJSON("/genres/" + id).done(function(data){
-        clearDivs();
+        clearGenreDivs();
         appendGenreShow(data)
     })
   })
@@ -117,32 +123,33 @@ function appendGenreShow(data){
   newGenre.showTemplate();
 }
 
-//Next Author Via AJAX
-function nextAuthor(){
-  $(document).on('click', '#js-next', function(e){
+//When the next button has no author to render
+function noNextGenre(){
+  $('#js-next-genre').hide();
+  $('#genreShow').hide();
+  const html = "<p>Sorry there is no next genre</p>"
+  $("#genreError").append(html)
+}
+
+
+//Next Genre Via AJAX
+function nextGenre(){
+  $(document).on('click', '#js-next-genre', function(e){
     e.preventDefault();
-    clearDivs();
-    let nextId = parseInt($("#js-next").attr("data-id")) + 1;
+    clearGenreDivs();
+    let nextId = parseInt($("#js-next-genre").attr("data-id")) + 1;
     const url = "/genres/" + nextId + ".json"
     $.ajax({
       url: url,
       method: 'get',
       success: function(data){
-        appendGenreShow(data)
-        $("#js-next").attr("data-id", data["id"]);
-      },
-      error: function(response){
-        noNextGenre();
+        if (data != null){
+          appendGenreShow(data)
+          $("#js-next-genre").attr("data-id", data["id"]);
+        } else {
+          noNextGenre();
+        }
       }
     })
   })
-}
-
-//When the next button has no author to render
-function noNextGenre(){
-  $('#js-next').hide();
-  $('#genreShow').hide();
-  $('#genreBookTitle').hide();
-  const html = "<p>Sorry there is no next genre</p>"
-  $("#genreError").append(html)
 }
