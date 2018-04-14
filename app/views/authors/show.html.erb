@@ -1,20 +1,41 @@
-<div id="authorShow">
-<h2>Books by
-  <div id="authorName"></div>
-  <div id="htmlAuthorName"><u><%= @author.name %></u></div>
-</h2>
+<div class="row">
+  <div class="sm-col-12">
+    <div id="authorShow">
+      <center><h2>Books by <div id="authorName"></div><div id="htmlAuthorName"><u><%= @author.name %></u></div>
+      </h2>
+    </center>
+    </div>
+  </div>
 </div>
 
-<div id="htmlAuthorBooks">
-  <ol>
-  <% @author.books.each do |book| %>
-      <li><%= link_to book.title, book_path(book.id) %></li>
-  <% end %>
-  </ol>
+<div class="row">
+  <div class="sm-col-12">
+    <div id="htmlAuthorBooks">
+        <% @author.books.each do |book| %>
+          <center><p><%= link_to book.title, book_path(book.id) %></p></center>
+        <% end %>
+    </div>
+    <center>
+      <div id="authors_books">
+      </div>
+    </center>
+  </div>
 </div>
 
-<div id="authors_books">
+<div class="row">
+  <div class="sm-col-12">
+    <center>
+      <br><br>
+      <a href="#" id="js-next" class="btn btn-primary" role="button" data-id="<%= @author.id %>">Next Author</a>
+    </center>
+  </div>
 </div>
 
-<a href="#" class="js-next" data-id="<%= @author.id %>"> Next Author</a>
-<div id="authorError"></div>
+<div class="row">
+  <div class="sm-col-12">
+    <center>
+      <div id="authorError">
+      </div>
+    </center>
+  </div>
+</div>

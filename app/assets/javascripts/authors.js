@@ -1,6 +1,7 @@
 $(document).ready(function(){
   authorsIndex();
   displayAuthorBooks();
+  nextAuthor();
 })
 
 //////////////Constructors & Prototypes//////////////
@@ -74,4 +75,76 @@ function displayAuthorBooks(){
 function appendAuthorBooks(data){
   let newAuthor = new Author(data)
   newAuthor.showBookTemplate()
+}
+
+
+//////////////Author Show via AJAX//////////////
+
+//clear DIVS on show page
+function clearDivs(){
+  document.getElementById("htmlAuthorName").innerHTML = ""
+  document.getElementById("authorName").innerHTML = ""
+  document.getElementById("htmlAuthorBooks").innerHTML = ""
+  document.getElementById("authors_books").innerHTML = ""
+}
+
+//Show Page via AJAX
+$(document).on('turbolinks:load', function() {
+  $('a.author-show').on('click', function(e){
+    e.stopPropagation()
+    let id = $(this).attr('data-id')
+      $.getJSON("/authors/" + id).done(function(data){
+        clearDivs();
+        appendAuthorShow(data)
+    })
+  })
+})
+
+//Append Author & Books to Show Page
+function appendAuthorsShow(data){
+  let newAuthor = new Author(data)
+  newAuthor.showTemplate();
+}
+
+//Author show prototype
+Author.prototype.showTemplate = function() {
+  let authorHTML = `<u>${ this.name }</u>`
+  $("#authorName").append(authorHTML)
+
+  this.books.forEach(function(book){
+    let id = this.id
+    let bookId = book.id
+    let bookHTML = `<p><a href="/books/${bookId}">${book.title}</a></p>`
+    $("#authors_books").append(bookHTML)
+  })
+}
+
+
+//Next Author Via AJAX
+function nextAuthor(){
+  $(document).on('click', '#js-next', function(e){
+    e.preventDefault();
+    clearDivs();
+    let nextId = parseInt($("#js-next").attr("data-id")) + 1;
+    const url = "/authors/" + nextId + ".json"
+    $.ajax({
+      url: url,
+      method: 'get',
+      success: function(data){
+        appendAuthorsShow(data)
+        $("#js-next").attr("data-id", data["id"]);
+      },
+      error: function(response){
+        noNextAuthor();
+      }
+    })
+  })
+}
+
+//When the next button has no author to render
+function noNextAuthor(){
+  $('#js-next').hide();
+  $('#authorShow').hide();
+  const html = "<p>Sorry there is no next author</p>"
+  $("#authorError").append(html)
 }
