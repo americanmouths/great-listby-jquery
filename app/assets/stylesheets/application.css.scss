@@ -35,6 +35,18 @@
   }
 }
 
+.navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: #A9A9A9;
+    color: #fff;
+}
+
+span.glyphicon.glyphicon-chevron-right{
+  color: #A9A9A9;
+}
+
+span.glyphicon.glyphicon-chevron-right:hover{
+  color: #2e7759;
+}
 
 .navbar-brand {
   font-size: 4.0em;

@@ -1,6 +1,6 @@
 <%= render partial: 'layouts/errors', locals: {object: @review} %>
 
-<h2>Add A Review for "<%= @book.title %>"</h2>
+<h2>Add A Review for <u><%= @book.title %></u></h2>
 <%= render partial: "form", locals: {book: @book, review: @review, user: @user} %>
 
 <div id="reviewResult">
