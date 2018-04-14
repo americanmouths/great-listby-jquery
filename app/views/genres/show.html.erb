@@ -1,9 +1,44 @@
-<h2><%= @genre.name %></h2>
-<h2>Books In This Genre:</h1>
-<ol>
-  <% @genre.books.each do |book| %>
-    <li>Title: <%= link_to book.title, book_path(book) %><br>
-    Author: <%= link_to book.author.name, author_path(book.author) %><br><br>
-    </li>
-  <% end %>
-</ol>
+<div class="genreShow">
+<div class="row">
+  <div class="sm-col-12">
+      <center><h2><div id="genreName"></div><div id="htmlGenreName"><u><%= @genre.name %></u></div>
+      </h2>
+    </center>
+  </div>
+</div>
+
+<div class="row">
+  <div class="sm-col-12">
+    <div id="htmlGenreBooks">
+      <ul>
+        <% @genre.books.each do |book| %>
+          <li><center><p><u><%= link_to book.title, book_path(book.id) %></u></p></li>
+          <p>Author: <%= link_to book.author.name, author_path(book.author) %></center>
+        <% end %>
+      </ul>
+    </div>
+    <center>
+      <div id="genre_books">
+      </div>
+    </center>
+  </div>
+</div>
+
+<div class="row">
+  <div class="sm-col-12">
+    <center>
+      <br><br>
+      <a href="#" id="js-next" class="btn btn-primary" role="button" data-id="<%= @genre.id %>">Next Genre</a>
+    </center>
+  </div>
+</div>
+
+<div class="row">
+  <div class="sm-col-12">
+    <center>
+      <div id="genreError">
+      </div>
+    </center>
+  </div>
+</div>
+</div>
