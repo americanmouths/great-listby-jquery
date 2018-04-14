@@ -80,10 +80,6 @@ function displayAuthorBooks(){
   $(document).on('click', 'a.see_author_info', function(e){
     e.preventDefault();
     let id = $(this).attr('data-id')
-    // chevronHTML = `<span class="glyphicon glyphicon-chevron-down"></span>`
-    // $('span#' + id + '.glyphicon.glyphicon-chevron-right').hide()
-    // $("#authors-" + id).hide()
-    // $('#chevron-' + id).append(chevronHTML)
     $.getJSON(`/authors/${id}.json`, appendAuthorBooks)
   })
 }
