@@ -1,10 +1,24 @@
-<h2>Review for <%= link_to @book.title, book_path(@book) %></h2>
-<h3>Title: <%= @review.title %></h3>
-<h3>Stars: <%= @review.rating.to_s %></h3>
-<h3>Content:</h3> <p><%= @review.content %></p>
-<h3>Written by: <%= @review.user.email %></h3><br><br>
+<div class="row">
+    <div class="col-sm-12">
+      <center>
+        <h2>Reviews for <u><%= link_to @book.title, book_path(@book) %></u></h2>
+      </center>
+    </div>
+  </div>
 
-<% if can? :update, @review %>
-  <%= link_to "Edit this review", edit_book_review_path(@book.id, @review.id) %> <br>
-  <%= link_to "Delete this review", book_review_path(@book.id, @review.id), :method => "delete"  %>
-<% end %>
+<div class="row">
+  <div class="col-sm-8">
+    <p><strong>Title:</strong> <%= @review.title %></p>
+    <p><strong>Rating:</strong> <%= @review.rating.to_s %></p>
+    <p><strong>Content:</strong> <%= @review.content %></p>
+    <p><strong>Written by:</strong> <%= @review.user.email %></p>
+  </div>
+  <div class="col-sm-4">
+    <% if can? :update, @review %>
+      <center>
+        <br>
+        <%= link_to "Edit this review", edit_book_review_path(@book.id, @review.id) %> <br>
+        <%= link_to "Delete this review", book_review_path(@book.id, @review.id), :method => "delete"  %>
+      </center>
+    <% end %>
+</div>

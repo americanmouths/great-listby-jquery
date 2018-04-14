@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/users/:id/lowest_rated_books', to: 'users#lowest_rated_books', as: 'users_lowest_rated_books'
 
   resources :books do
-    resources :reviews
+    resources :reviews, only: [:create, :destroy, :new, :edit, :update]
   end
 
   resources :book_lists do

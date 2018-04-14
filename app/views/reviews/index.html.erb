@@ -1,9 +1,0 @@
-<h1>Reviews for <%= link_to @book.title, book_path(@book) %></h1>
-<ol>
-  <% @book.reviews.each do |review| %>
-    <li>Title: <%= review.title %><br>
-    Content: <%= review.content %><br>
-    Stars: <%= review.rating %><br>
-    Written by: <%= review.user.email %></h3><br><br>
-  <% end %>
-</ol>

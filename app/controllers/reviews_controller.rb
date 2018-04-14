@@ -1,10 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_current_user
 
-  def index
-    @book = Book.find_by(id: params[:book_id])
-  end
-
   def new
     authorize! :create, Review
     @review = Review.new
