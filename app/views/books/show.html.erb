@@ -1,46 +1,57 @@
 <div class="row">
-    <div class="col-sm-7">
+  <div class="col-sm-12">
+    <center>
       <h1><u><%= @book.title %></u></h1>
         <div class="book-index">
           Written By: <%= link_to @book.author.name, author_path(@book.author) %><br>
           Genre: <%= link_to @book.genre.name, genre_path(@book.genre) %><br>
           <hr>
         </div>
-      <% if current_user && @book_on_booklist.present? %>
-        <p>This book appears on these booklists:</p>
-          <% @book_on_booklist.each do |book_list| %>
-            <%= link_to book_list.title, book_list_path(book_list) %><br>
-          <% end %>
-          <hr>
-      <% end %>
+    </center>
+  </div>
+</div>
 
-      <% if current_user && current_user.book_lists.present? %>
-        <p>Add it to one of your booklists:</p>
-          <%= render partial: "booklistcollection", locals: {book: @book, user: @user} %>
-        <% end %>
-        <br>
-    </div>
 
-  <div class="col-sm-5">
-    <h1>Reviews</h1>
-    <%= link_to "Add A Review", new_book_review_path(@book.id) %>
-    <% if @reviews.present? %>
-        <ol>
-          <% @reviews.each do |review| %>
-            <div class="review-content-book-show">
-              <li><br>
-              <h4><strong>Written By:</strong> <%= review.user.email %></h4>
-              <h4>Title: <%= review.title %></h4>
-              <h4>Rating: <%= review.rating %></h4>
+<div class="row">
+    <div class="col-sm-12">
+        <h1><u>Reviews</u></h1>
+        <%= link_to "Add A Review", new_book_review_path(@book.id) %><br><br>
+        <div class="review-content-book-show">
+          <% if @reviews.present? %>
+            <% @reviews.each do |review| %>
+              <p><strong>Written By:</strong> <%= review.user.email %></p>
+              <p>Title: <%= review.title %></p>
+              <p>Rating: <%= review.rating %></p>
               <p>Summary: <%= review.content %></p>
-            </li>
+
               <% if can? :update, review %>
                 <%= link_to "Edit this review", edit_book_review_path(@book.id, review.id) %> <br>
                 <%= link_to "Delete this review", book_review_path(@book.id, review.id), :method => "delete"  %>
               <% end %>
+
             <% end %>
           <% end %>
-        </ol>
+          <hr>
+        </div>
       </div>
+    </div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <% if current_user && @book_on_booklist.present? %>
+      <h3>This book appears on these booklists:</h3>
+        <% @book_on_booklist.each do |book_list| %>
+          <%= link_to book_list.title, book_list_path(book_list) %><br>
+        <% end %>
+        <hr>
+    <% end %>
+  </div>
+
+  <div class="col-sm-6">
+    <% if current_user && current_user.book_lists.present? %>
+      <h3>Add it to a booklist:</h3>
+        <%= render partial: "booklistcollection", locals: {book: @book, user: @user} %>
+    <% end %>
+    <br>
   </div>
 </div>
