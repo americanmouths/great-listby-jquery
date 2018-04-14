@@ -92,7 +92,7 @@ function appendAuthorBooks(data){
 //////////////Author Show via AJAX//////////////
 
 //clear DIVS on show page
-function clearDivs(){
+function clearAuthorDivs(){
   document.getElementById("htmlAuthorName").innerHTML = ""
   document.getElementById("authorName").innerHTML = ""
   document.getElementById("htmlAuthorBooks").innerHTML = ""
@@ -105,7 +105,7 @@ $(document).on('turbolinks:load', function() {
     e.stopPropagation()
     let id = $(this).attr('data-id')
       $.getJSON("/authors/" + id).done(function(data){
-        clearDivs();
+        clearAuthorDivs();
         appendAuthorShow(data)
     })
   })
@@ -121,7 +121,7 @@ function appendAuthorsShow(data){
 function nextAuthor(){
   $(document).on('click', '#js-next', function(e){
     e.preventDefault();
-    clearDivs();
+    clearAuthorDivs();
     let nextId = parseInt($("#js-next").attr("data-id")) + 1;
     const url = "/authors/" + nextId + ".json"
     $.ajax({
