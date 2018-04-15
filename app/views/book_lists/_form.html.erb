@@ -12,7 +12,7 @@ Create a book to add to this booklist:<br><br>
 <%= f.fields_for :books, booklist.books.build do |book_fields| %>
   Title:<br><%= book_fields.text_field :title %><br><br>
   Author:<br><%= book_fields.text_field :author %><br><br>
-  Genre:<br><%= book_fields.text_field :genre %><br><br>
+  Genre:<br><%= book_fields.collection_select :genre, Genre.all, :id, :name  %><br><br>
 <% end %>
 
 <%= f.label "Status" %><br>
