@@ -1,4 +1,8 @@
 <%= form_for([book, review]) do |review_fields| %>
+
+  <%= review_fields.label "Your name" %><br>
+  <%= review_fields.text_field :name, :id => "name" %><br><br>
+
   <%= review_fields.label :title %><br>
   <%= review_fields.text_field :title, :id => "title" %><br><br>
 

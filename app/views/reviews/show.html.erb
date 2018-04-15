@@ -11,7 +11,7 @@
     <p><strong>Title:</strong> <%= @review.title %></p>
     <p><strong>Rating:</strong> <%= @review.rating.to_s %></p>
     <p><strong>Content:</strong> <%= @review.content %></p>
-    <p><strong>Written by:</strong> <%= @review.user.email %></p>
+    <p><strong>Written by:</strong> <%= @review.name %></p>
   </div>
   <div class="col-sm-4">
     <% if can? :update, @review %>

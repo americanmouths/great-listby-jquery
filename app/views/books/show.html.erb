@@ -19,7 +19,7 @@
         <div class="review-content-book-show">
         <% if @reviews.present? %>
           <% @reviews.each do |review| %>
-            <p><strong>Written By:</strong> <%= review.user.email %></p>
+            <p><strong>Written By:</strong> <%= review.name %></p>
             <p>Title: <%= review.title %></p>
             <p>Rating: <%= review.rating %></p>
             <p>Summary: <%= review.content %></p>
@@ -27,6 +27,7 @@
             <% if can? :update, review %>
               <%= link_to "Edit this review", edit_book_review_path(@book.id, review.id) %> <br>
               <%= link_to "Delete this review", book_review_path(@book.id, review.id), :method => "delete"  %>
+              <br><br>
             <% end %>
           <% end %>
         <% end %>

@@ -6,6 +6,7 @@ function Review(data){
   this.rating = data.rating
   this.book_id = data.book.id
   this.book_title = data.book.title
+  this.name = data.name
 }
 
 //Review Show Prototype
@@ -13,6 +14,7 @@ Review.prototype.showReview = function(){
   reviewHTML = `<h2>${this.title}</h2>
   <p>Content: ${this.content}</p>
   <p>Rating: ${this.rating}</p>
+  <p>Written By: ${this.name}</p>
   <hr>
   <a href="/books/${this.book_id}">Return to ${this.book_title}</a>`
   return reviewHTML
@@ -43,6 +45,7 @@ $(function (){
 
 //Reset All Form Fields
 function resetFormFields(){
+  $('#name').val("");
   $('#title').val("");
   $('#content').val("");
   $('#rating').val("");
