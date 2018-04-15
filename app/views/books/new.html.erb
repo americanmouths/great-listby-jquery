@@ -1,0 +1,8 @@
+<%= render partial: 'layouts/errors', locals: {object: @book} %>
+
+<h2>Create A New Book To Add To "<%= @booklist.title %>"</h1>
+<%= render partial: 'form', locals: {book: @book, booklist: @booklist} %>
+<br>
+<hr>
+<h2>Add An Existing Book To "<%= @booklist.title %>"</h2>
+<%= render partial: 'booklist_book_collection', locals: {booklist: @booklist} %>
