@@ -2,6 +2,7 @@ $(document).ready(function(){
   authorsIndex();
   displayAuthorBooks();
   nextAuthor();
+  hideBooks();
 })
 
 //////////////Constructors & Prototypes//////////////
@@ -17,7 +18,8 @@ function Author(data){
 Author.prototype.indexTemplate = function() {
   let authorHTML = `<div><a href="#" data-id="${this.id}" class="see_author_info" id="authors-${this.id}"><span class="glyphicon glyphicon-chevron-right" id="${this.id}"></span></a>
     <a href="/authors/${this.id}" data-id="${this.id}" class="author-index">${ this.name }</a></div>
-  <br><div id="author-info-${this.id}" class="author-info-on-index"></div>`
+  <br><div id="author-info-${this.id}" class="author-info-on-index"></div>
+  <div id="chevron"></div>`
   return authorHTML
 }
 
@@ -33,7 +35,23 @@ Author.prototype.showBookTemplate = function(){
   })
   $('span#' + id + '.glyphicon.glyphicon-chevron-right').hide()
   $("#authors-" + id).hide()
+  let chevronHTML = `<a href="#" class="hide_books" data-id="${id}"><span class="glyphicon glyphicon-chevron-up" id="up-${id}"></span></a>`
+  $("#chevron").append(chevronHTML);
 }
+
+//Hide books when ^ arrow clicked
+function hideBooks(){
+  $(document).on('click', 'a.hide_books', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    let id = $(this).attr('data-id')
+    $("#author-info-" + id).hide();
+    $("#up-" + id).hide();
+    $('span#' + id + '.glyphicon.glyphicon-chevron-right').show()
+    $("#authors-" + id).show()
+    })
+  }
+
 
 //Author Show Template for Author Show page
 Author.prototype.showTemplate = function() {
