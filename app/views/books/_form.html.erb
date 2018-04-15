@@ -4,7 +4,7 @@
   <%= f.text_field :title %><br><br>
 
   <%= f.label "Genre" %><br>
-  <%= f.text_field :genre_name %><br><br>
+  <%= f.select :genre_name, @genres.collect {|genre| [genre.name]} %><br><br>
 
   <%= f.label "Author" %><br>
   <%= f.text_field :author_name %><br><br>

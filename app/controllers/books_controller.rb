@@ -11,6 +11,7 @@ class BooksController < ApplicationController
 
   def new
     authorize! :create, Book
+    @genres = Genre.all
     @book = Book.new
     @booklist = BookList.find_by(id: params[:book_list_id])
     authorize! :update, @booklist
@@ -23,6 +24,7 @@ class BooksController < ApplicationController
       update_book_statuses
       redirect_to book_list_path(@booklist)
     else
+      @genres = Genre.all
       @booklist = BookList.find_by(id: params[:book][:book_list_id])
       render :new
     end
@@ -68,7 +70,7 @@ class BooksController < ApplicationController
 
   private
     def book_params
-      params.require(:book).permit(:term, :book_list_id, :title, :genre_name, :author_name, :book_features => [], :book_list_ids => [])
+      params.require(:book).permit(:term, :book_list_id, :title, :genre_name, :author_name, :book_features => [], :book_list_ids => [], :genre_id => [])
     end
 
     def set_current_user
