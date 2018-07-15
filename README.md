@@ -1,4 +1,4 @@
-# README
+# THE GREAT LISTBY W/ jQUERY FRONT END
 
 <h1>The Great Listby - jQuery Front End</h1>
 <p>This is a free Ruby on Rails app with a jQuery front end for managing booklists</p>
